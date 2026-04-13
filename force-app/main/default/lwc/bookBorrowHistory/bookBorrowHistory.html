@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Borrow History">
+        
+        <template if:true={borrowRecords}>
+            <div class="table-container">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                        <tr>
+                            <th>Member Name</th>
+                            <th>Borrow Date</th>
+                            <th>Due Date</th>
+                            <th>Return Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={borrowRecords} for:item="record">
+                            <tr key={record.id}>
+                                <td>{record.memberName}</td>
+                                <td>{record.borrowDate}</td>
+                                <td>{record.dueDate}</td>
+                                <td>{record.returnDate}</td>
+                                <td>
+                                    <span class={record.statusClass}>
+                                        {record.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+        <template if:false={borrowRecords}>
+            <p class="slds-p-around_medium">No borrow history found.</p>
+        </template>
+
+    </lightning-card>
+</template>

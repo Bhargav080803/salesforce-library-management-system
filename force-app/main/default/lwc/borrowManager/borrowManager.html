@@ -1,0 +1,32 @@
+<template>
+    <lightning-card title="Borrow Manager">
+
+        <div>
+
+            <lightning-combobox
+                label="Select Book"
+                options={books}
+                onchange={handleBookChange}>
+            </lightning-combobox>
+
+            <lightning-button
+                label="Borrow Book"
+                variant="brand"
+                onclick={handleBorrow}>
+            </lightning-button>
+                
+
+        </div>
+
+         <template if:true={activeBorrows}>
+            <lightning-datatable
+                key-field="Id"
+                data={activeBorrows}
+                columns={columns}
+                onrowaction={handleRowAction}>
+                
+            </lightning-datatable>
+        </template>
+
+    </lightning-card>
+</template>

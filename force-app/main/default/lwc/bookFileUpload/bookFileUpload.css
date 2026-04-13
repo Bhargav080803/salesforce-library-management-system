@@ -1,0 +1,53 @@
+.card {
+    border-radius: 12px;
+}
+
+.upload-section {
+    padding: 15px;
+    background: #f4f6f9;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.file-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px;
+}
+
+.file-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.file-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
+}
+
+.file-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.file-meta {
+    font-size: 12px;
+    color: gray;
+}
+
+.file-actions lightning-button-icon {
+    margin-left: 8px;
+}
+
+/* ⭐ DELETE BUTTON STYLING */
+.delete-icon {
+    --slds-c-icon-color-foreground: #e63946;    /* Red color */
+    --slds-c-icon-color-foreground-hover: #b02a37; /* Darker red on hover */
+}

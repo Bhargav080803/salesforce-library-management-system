@@ -1,0 +1,39 @@
+<template>
+    <div class="premium-card">
+
+        <div class="card-header">
+            <div class="icon-wrapper">
+                💰
+            </div>
+            <div>
+                <h2>Total Fine Payable</h2>
+                <p class="subtitle">Overdue & Pending Fines</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <template if:true={hasFine}>
+            <div class="fine-section">
+                <div class="amount">
+                    ₹ {formattedFine}
+                </div>
+                <div class="status-badge danger">
+                    Pending Payment
+                </div>
+            </div>
+        </template>
+
+        <template if:false={hasFine}>
+            <div class="fine-section">
+                <div class="amount success-text">
+                    ₹ 0
+                </div>
+                <div class="status-badge success">
+                    No Outstanding Fine 🎉
+                </div>
+            </div>
+        </template>
+
+    </div>
+</template>

@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title="📂 File Manager" class="card">
+
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <lightning-file-upload
+                label="Upload File"
+                record-id={recordId}
+                onuploadfinished={handleUploadFinished}
+                multiple>
+            </lightning-file-upload>
+        </div>
+
+        <!-- File List -->
+        <template if:true={files}>
+            <div class="file-container">
+                <template for:each={files} for:item="file">
+                    <div key={file.ContentDocumentId} class="file-box">
+
+                        <div class="file-info">
+                            <p class="file-title">{file.ContentDocument.Title}</p>
+                            <p class="file-meta">{file.ContentDocument.FileType}</p>
+                        </div>
+
+                        <div class="file-actions">
+                            <lightning-button-icon
+                                icon-name="utility:preview"
+                                alternative-text="Preview"
+                                onclick={handlePreview}
+                                data-id={file.ContentDocumentId}>
+                            </lightning-button-icon>
+
+                            <lightning-button-icon
+                                icon-name="utility:download"
+                                alternative-text="Download"
+                                onclick={handleDownload}
+                                data-id={file.ContentDocumentId}>
+                            </lightning-button-icon>
+
+                            <!-- ⭐ DELETE BUTTON -->
+                            <lightning-button-icon
+                                icon-name="utility:delete"
+                                alternative-text="Delete"
+                                onclick={handleDelete}
+                                data-id={file.ContentDocumentId}
+                                class="delete-icon">
+                            </lightning-button-icon>
+                        </div>
+
+                    </div>
+                </template>
+            </div>
+        </template>
+
+    </lightning-card>
+</template>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Members</fullName>
+    <columns>NAME</columns>
+    <columns>Email__c</columns>
+    <columns>Phone__c</columns>
+    <columns>Membership_Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Borrow_Count__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>My Members</label>
+</ListView>

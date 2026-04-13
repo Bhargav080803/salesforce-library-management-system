@@ -1,0 +1,55 @@
+<template>
+    <div class="home-wrapper">
+
+        <!-- Header -->
+        <div class="home-header">
+            <h1>📚 Library Management System</h1>
+            <p>Smart Digital Library Dashboard</p>
+        </div>
+
+        <!-- Tiles -->
+        <div class="tile-container">
+
+             <div class="tile profile" onclick={navigateToProfile}>
+                <lightning-icon icon-name="standard:user" size="large"></lightning-icon>
+                    <h2>Profile</h2>
+                     <p>View & manage your profile</p>
+            </div>
+
+            <div class="tile books" onclick={navigateToBooks}>
+                <lightning-icon icon-name="standard:knowledge" size="large"></lightning-icon>
+                <h2>Books</h2>
+                <p>Manage all books</p>
+            </div>
+
+           
+
+            <div class="tile members" onclick={navigateToMembers}>
+                <lightning-icon icon-name="standard:contact" size="large"></lightning-icon>
+                <h2>Members</h2>
+                <p>View library members</p>
+            </div>
+
+            <div class="tile borrow" onclick={navigateToBorrow}>
+                <lightning-icon icon-name="standard:orders" size="large"></lightning-icon>
+                <h2>Borrow Records</h2>
+                <p>Track borrow activity</p>
+            </div>
+
+            <div class="tile reservation" onclick={navigateToReservation}>
+                <lightning-icon icon-name="standard:event" size="large"></lightning-icon>
+                <h2>Reservations</h2>
+                <p>Manage reservations</p>
+            </div>
+
+            <!-- Centered Dashboard -->
+            <div class="tile dashboard" onclick={navigateToDashboard}>
+                <lightning-icon icon-name="standard:dashboard" size="large"></lightning-icon>
+                <h2>Analytics Dashboard</h2>
+                <p>View reports & insights</p>
+            </div>
+
+        </div>
+
+    </div>
+</template>

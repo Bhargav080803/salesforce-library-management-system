@@ -1,0 +1,139 @@
+<template>
+    <lightning-card>
+
+        <template if:true={member}>
+            <div class="profile-wrapper">
+
+                <!-- HEADER SECTION -->
+                <div class="profile-header">
+
+                    <div class="profile-image-section">
+                        <img src={imageUrl} class="profile-img" />
+                    </div>
+
+                    <div class="profile-basic-info">
+                        <h1 class="member-name">{member.Member_Name__c}</h1>
+                        <p class="member-id">Member ID: {member.Name}</p>
+                        <p class="membership-type">MembershipType : {member.Membership_Type__c}</p>
+
+                        <span class={statusClass}>
+                            {member.Status__c}
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- DIVIDER -->
+                <div class="divider"></div>
+
+                <!-- DETAILS SECTION -->
+                <div class="details-section">
+
+                    <div class="detail-card">
+                        <p class="detail-label">Email</p>
+                        <p class="detail-value">{member.Email__c}</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <p class="detail-label">Phone</p>
+                        <p class="detail-value">{member.Phone__c}</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <p class="detail-label">Borrow Count</p>
+                        <p class="detail-value highlight">
+                            {member.Borrow_Count__c}
+                        </p>
+                    </div>
+
+                    
+
+                </div>
+
+            </div>
+        </template>
+
+        <template if:false={member}>
+            <div class="empty-state">
+                No profile found.
+            </div>
+        </template>
+
+    </lightning-card>
+<!-- ================= SUMMARY SECTION ================= -->
+
+<lightning-card class="section-card">
+    <div class="section-header">
+        <h2>Summary</h2>
+    </div>
+
+    <div class="section-body">
+
+        <div class="summary-section">
+
+            <div class="summary-card">
+                <p>Borrowed</p>
+                <h2>{summary.borrowed}</h2>
+            </div>
+
+            <div class="summary-card">
+                <p>Overdue</p>
+                <h2 class="danger">{summary.overdue}</h2>
+            </div>
+
+            <div class="summary-card">
+                <p>Reserved</p>
+                <h2>{summary.reserved}</h2>
+            </div>
+
+            <div class="summary-card">
+                <p>Returned</p>
+                <h2 class="success">{summary.returned}</h2>
+            </div>
+
+        </div>
+
+    </div>
+</lightning-card>
+
+
+<!-- ================= RECENT ACTIVITY SECTION ================= -->
+
+<lightning-card class="section-card">
+    <div class="section-header">
+        <h2>Recent Activity</h2>
+    </div>
+
+    <div class="section-body">
+
+        <table class="recent-table">
+            <thead>
+                <tr>
+                    <th>Book Id</th>
+                    <th>Book Name</th>
+                    <th>Borrow Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={recentBooks} for:item="book">
+                    <tr key={book.Id}>
+                        <td>{book.Book__r.Name}</td>
+                        <td>{book.Book_Title__c}</td>
+                        <td>{book.Borrow_Date__c}</td>
+                        <td>{book.Due_date__c}</td>
+                        <td>{book.Borrow_Status__c}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+
+    </div>
+</lightning-card>
+
+
+
+
+
+</template>

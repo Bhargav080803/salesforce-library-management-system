@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invalid_Return_Date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+       NOT(  ISBLANK( Return_Date__c ) ),
+        Return_Date__c  &lt;  Borrow_Date__c 
+)</errorConditionFormula>
+    <errorDisplayField>Return_Date__c</errorDisplayField>
+    <errorMessage>Return Date cannot be less than Borrow Date</errorMessage>
+</ValidationRule>

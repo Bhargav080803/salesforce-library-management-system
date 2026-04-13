@@ -1,0 +1,169 @@
+<template>
+
+<div class="profile-container">
+
+    <!-- ================= PROFILE HEADER ================= -->
+    <div class="profile-card">
+
+        <template if:true={member}>
+            <div class="profile-header">
+
+                <img src={imageUrl} class="profile-img" />
+
+                <div class="profile-info">
+                    <h1 class="member-name">{member.Member_Name__c}</h1>
+                    <p class="member-id">Member ID: {member.Name}</p>
+                    <p class="membership-type">{member.Membership_Type__c}</p>
+
+                    <span class="status-active">
+                        {member.Status__c}
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- ===== DETAILS ===== -->
+            <div class="details-section">
+
+                <div class="detail-card">
+                    <div class="icon-circle email-bg">
+                        <lightning-icon icon-name="utility:email" size="x-small"></lightning-icon>
+                    </div>
+                    <div>
+                        <p>Email</p>
+                        <h3>{member.Email__c}</h3>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="icon-circle phone-bg">
+                        <lightning-icon icon-name="utility:call" size="x-small"></lightning-icon>
+                    </div>
+                    <div>
+                        <p>Phone</p>
+                        <h3>{member.Phone__c}</h3>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="icon-circle count-bg">
+                        <lightning-icon icon-name="utility:metrics" size="x-small"></lightning-icon>
+                    </div>
+                    <div>
+                        <p>Borrow Count</p>
+                        <h3>{member.Borrow_Count__c}</h3>
+                    </div>
+                </div>
+
+            </div>
+        </template>
+
+    </div>
+
+
+    <!-- ================= SUMMARY ================= -->
+    <div class="section-card">
+
+        <h2 class="section-title" style="font-size: 20px; padding-bottom: 6px;">Summary</h2>
+
+        <div class="summary-section">
+
+            <div class="summary-box borrowed">
+                <div class="icon-circle email-bg">
+                    <lightning-icon icon-name="utility:archive" size="x-small"></lightning-icon>
+                </div>
+                <p>Borrowed</p>
+                <h2>{summary.borrowed}</h2>
+            </div>
+
+            <div class="summary-box overdue">
+                <div class="icon-circle phone-bg">
+                    <lightning-icon icon-name="utility:error" size="x-small"></lightning-icon>
+                </div>
+                <p>Overdue</p>
+                <h2>{summary.overdue}</h2>
+            </div>
+
+            <div class="summary-box reserved">
+                <div class="icon-circle count-bg">
+                    <lightning-icon icon-name="utility:bookmark" size="x-small"></lightning-icon>
+                </div>
+                <p>Reserved</p>
+                <h2>{summary.reserved}</h2>
+            </div>
+
+            <div class="summary-box returned">
+                <div class="icon-circle email-bg">
+                    <lightning-icon icon-name="utility:success" size="x-small"></lightning-icon>
+                </div>
+                <p>Returned</p>
+                <h2>{summary.returned}</h2>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= RECENT ACTIVITY ================= -->
+    <div class="section-card">
+
+        <h2 class="section-title" style="font-size: 20px; padding-bottom: 6px;">
+            Recent Activity
+        </h2>
+
+        <div class="table-wrapper">
+
+            <table class="recent-table">
+
+                <!-- ===== HEADER ===== -->
+                <thead>
+                    <tr>
+                        <th>Book Id</th>
+                        <th>Book Name</th>
+                        <th>Borrow Date</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <!-- ===== BODY ===== -->
+                <tbody>
+
+                    <!-- Records -->
+                    <template if:true={recentBooks}>
+                        <template for:each={recentBooks} for:item="book">
+                            <tr key={book.Id}>
+                                <td>{book.Book__r.Name}</td>
+                                <td>{book.Book_Title__c}</td>
+                                <td>{book.Borrow_Date__c}</td>
+                                <td>{book.Due_date__c}</td>
+                                <td>
+                                    <span class={book.statusClass}>
+                                        {book.Borrow_Status__c}
+                                    </span>
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+
+                    <!-- Empty State -->
+                    <!-- <template if:false={recentBooks.length}>
+                        <tr>
+                            <td colspan="5" style="text-align:center; padding:20px; color:#9ca3af;">
+                                No Recent Activity Found
+                            </td>
+                        </tr>
+                    </template> -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</template>

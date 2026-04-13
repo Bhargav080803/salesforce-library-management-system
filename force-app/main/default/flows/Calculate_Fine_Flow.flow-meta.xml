@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Assign Fine Amount</description>
+        <name>Assign_Fine_Amount</name>
+        <label>Assign Fine Amount</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Fine__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Calculate_Fine</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Borrowing_record</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Is_OverDue</name>
+        <label>Is OverDue</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>update_return_date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not OverDue</defaultConnectorLabel>
+        <rules>
+            <name>OverDue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Due_date__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Return_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Fine_Amount</targetReference>
+            </connector>
+            <label>OverDue</label>
+        </rules>
+    </decisions>
+    <description>Calculate Fine Flow</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Calculate fine based on days</description>
+        <name>Calculate_Fine</name>
+        <dataType>Number</dataType>
+        <expression>{!OverDue_Days} * 20</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <description>Calculating Over Due Days</description>
+        <name>OverDue_Days</name>
+        <dataType>Number</dataType>
+        <expression>TODAY()-{!$Record.Due_date__c}</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Calculate Fine Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Calculate Fine Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Borrowing_record</name>
+        <label>Update Borrowing record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Fine__c</field>
+            <value>
+                <elementReference>Calculate_Fine</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Return_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>If it is not overdue only update return date when record is updated</description>
+        <name>update_return_date</name>
+        <label>update return date</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Return_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_OverDue</targetReference>
+        </connector>
+        <object>Borrowing_Record__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

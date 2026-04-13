@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Book_Must_Be_Available</fullName>
+    <active>true</active>
+    <description>Book status Should be Available</description>
+    <errorConditionFormula>NOT(ISPICKVAL( Book__r.Availability_Status__c ,&quot;Available&quot;))</errorConditionFormula>
+    <errorDisplayField>Book__c</errorDisplayField>
+    <errorMessage>This book is not available for borrowing.</errorMessage>
+</ValidationRule>

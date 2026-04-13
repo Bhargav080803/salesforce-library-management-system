@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reserve_only_not_Available_Book</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+      ISPICKVAL(Book__r.Availability_Status__c,&apos;Available&apos;), 
+      ISPICKVAL(  Status__c , &apos;Active&apos;)
+)</errorConditionFormula>
+    <errorDisplayField>Book__c</errorDisplayField>
+    <errorMessage>This book is Currently available and Does not require reservation.</errorMessage>
+</ValidationRule>

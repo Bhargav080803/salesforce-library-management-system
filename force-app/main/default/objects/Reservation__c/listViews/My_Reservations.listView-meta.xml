@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Reservations</fullName>
+    <columns>NAME</columns>
+    <columns>Book__c</columns>
+    <columns>Member__c</columns>
+    <columns>Status__c</columns>
+    <columns>Reservation_Date__c</columns>
+    <columns>Notification_Date__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>My Reservations</label>
+</ListView>

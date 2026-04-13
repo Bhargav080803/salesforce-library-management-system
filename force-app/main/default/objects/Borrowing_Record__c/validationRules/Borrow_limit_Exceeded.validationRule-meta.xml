@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Borrow_limit_Exceeded</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+   ISPICKVAL( Borrow_Status__c , &quot;Borrowed&quot;),
+    Member__r.Borrow_Count__c  &gt;= 4
+)</errorConditionFormula>
+    <errorMessage>You cannot borrow 4 books at a time</errorMessage>
+</ValidationRule>

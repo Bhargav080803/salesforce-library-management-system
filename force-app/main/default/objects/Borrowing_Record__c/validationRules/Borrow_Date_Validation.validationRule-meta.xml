@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Borrow_Date_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>Borrow_Date__c &gt; TODAY()</errorConditionFormula>
+    <errorDisplayField>Borrow_Date__c</errorDisplayField>
+    <errorMessage>Borrow date should be less than or equals to today</errorMessage>
+</ValidationRule>
