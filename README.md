@@ -84,6 +84,15 @@ Librarian Profile
 <img width="975" height="548" alt="image" src="https://github.com/user-attachments/assets/3a07e033-2f20-44f8-95c2-367e6778488d" />
 
 
+Dashboard :
+
+<img width="1227" height="911" alt="orgfarm-daf7ca527f-dev-ed develop lightning force com_lightning_n_Librarian_Dashboard (1)" src="https://github.com/user-attachments/assets/549be889-1a1c-4624-98c0-40a8be9bb2ac" />
+
+
+
+
+
+
 
 
 
